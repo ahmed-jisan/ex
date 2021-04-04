@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Age Calculator</title>
+    
+   <style>
+   
+   *{
+   
+   margin: 0;
+   padding: 0;
+   font-family: poppins;
+   box-sizing: border-box;
+   
+   }
+   
+   body{
+   
+   background: radial-gradient(circle at 15% 15%,#FE6F5E 0%,#FE6F5E 20%,transparent 0%),
+   radial-gradient(circle at 30% 80%,#1E90FF 0%,#1E90FF 10%,transparent 0%),
+   radial-gradient(circle at 90% 30%,#50C878 0%,#50C878 10%,transparent 0%);
+   background-repeat: no-repeat;
+   background-size: 100vw 100vh;
+   
+   }
+   
+   #container{
+   
+   width: 600px;
+   background: rgba(0,0,0,0.2);
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%,-50%);
+   padding: 50px 70px;
+   transition: all 0.5s;
+   border-radius: 20px;
+   backdrop-filter: blur(10px);
+   box-shadow: 0px 0px 10px -5px #000;
+   
+   }
+   
+   #input h3,#output h3{
+   
+   font-size: 40px;
+   text-align: center;
+   color: #333;
+   margin-bottom: 40px;
+   
+   }
+   
+   #field{
+  
+   margin-bottom: 40px;
+   position: relative;
+   
+   }
+   
+   #field p,#output p{
+   
+   font-size: 30px;
+   margin-bottom: 5px;
+   
+   }
+   
+   #output p{
+   
+   font-weight: bold;
+   color: #222;
+   
+   }
+   
+   #output p:nth-child(4){
+   
+   margin-bottom: 40px;
+   
+   }
+   
+   #field input,#field select,#input button{
+   
+   height: 70px;
+   width: 100%;
+   border-radius: 50px;
+   font-size: 30px;
+   padding: 0px 25px;
+   border: none;
+   outline: none;
+   background: none;
+   box-shadow: inset 2px  2px 3px rgba(0,0,0,0.2),inset -2px  -2px 3px rgba(255,255,255,0.5);
+   
+   }
+   
+   #field select{
+   
+   width: 45%;
+   margin-right: 0px;
+   box-shadow: inset -2px  -2px 3px rgba(0,0,0,0.2),inset 2px  2px 3px rgba(255,255,255,0.5),4px 6px 16px rgba(0,0,0,0.2);
+   
+   }
+   
+   #field select:nth-child(2){
+   
+   position: absolute;
+   right: 0;
+   bottom: 0;
+   
+   }
+   
+   #input button{
+   
+   text-transform: uppercase;
+   position: relative;
+   left: 25%;
+   width: 50%;
+   box-shadow: inset -2px  -2px 3px rgba(0,0,0,0.2),inset 2px  2px 3px rgba(255,255,255,0.5),4px 6px 16px rgba(0,0,0,0.2);
+   
+   }
+   
+   #input button:active{
+   
+   box-shadow: inset -2px  -2px 3px rgba(255,255,255,0.5),inset 2px  2px 3px rgba(0,0,0,0.2);
+   
+   }
+   
+   table{
+   
+   margin: auto;
+   width: 80%;
+   border-collapse: collapse;
+   height: 240px;
+   
+   }
+   
+   caption{
+   
+   font-size: 30px;
+   font-weight: bold;
+   margin-bottom: 20px;
+   
+   }
+   
+   table,tr,td,th{
+  
+   text-align: center;
+   font-size: 20px;
+   
+   }
+   
+   th,td{
+   
+   width: 50%;
+   
+   }
+   
+   tr:nth-child(odd){
+   
+   background: #333;
+   color: #fff;
+   
+   }
+   
+   #cross{
+   
+   border: none;
+   outline: none;
+   background: transparent;
+   position: absolute;
+   right: 50px;
+   bottom: 50px;
+   height: 50px;
+   width: 50px;
+   font-size: 50px;
+   line-height: 50px;
+   overflow: hidden;
+   border-radius: 30px;
+   box-shadow: 2px 2px 3px rgba(0,0,0,0.2),-2px -2px 3px rgba(255,255,255,0.3);
+   
+   }
+   
+   #cross:active{
+   
+   box-shadow: inset 2px 2px 3px rgba(0,0,0,0.2),inset -2px -2px 3px rgba(255,255,255,0.3);
+   
+   }
+   
+   #Alert{
+   
+   height: 160px;
+   width: 100%;
+   position: relative;
+   text-align: center;
+   line-height: 160px;
+   font-size: 35px;
+   font-weight: bold;
+   
+   }
+   
+   #Alert button{
+   
+   position: absolute;
+   right: 50px;
+   bottom: 0px;
+   text-transform: uppercase;
+   padding: 5px 15px;
+   font-size: 24px;
+   font-weight: bold;
+   border: none;
+   outline: none;
+   background: none;
+   border-radius: 5px;
+   box-shadow: inset 2px 2px 3px rgba(255,255,255,0.5),inset -2px -2px 3px rgba(0,0,0,0.2),3px 6px 10px rgba(0,0,0,0.3);
+   
+   }
+   
+   #Alert button:active{
+   
+   box-shadow: inset 2px 2px 3px rgba(0,0,0,0.2),inset -2px -2px 3px rgba(255,255,255,0.5);
+   
+   }
+   
+   @font-face{
+   
+   font-family: poppins;
+   src: url(fonts/Poppins.otf);
+   
+   }
+   
+   </style> 
+    
+</head>
+<body>
+
+  <div id="container">
+    
+    <div id="input">
+      
+      <h3>Fill The Form</h3>
+      
+      <div id="field">
+      
+      <p>Enter your name</p>
+      <input id="name" type="text"/>
+      
+      </div>
+      
+      <div id="field">
+      
+      <p>Enter date & month</p>
+      <select id="day">
+      
+        <option value="">Day</option>
+        <option value="1">01</option>
+        <option value="2">02</option>
+        <option value="3">03</option>
+        <option value="4">04</option>
+        <option value="5">05</option>
+        <option value="6">06</option>
+        <option value="7">07</option>
+        <option value="8">08</option>
+        <option value="9">09</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+      
+      </select>
+      
+      <select id="month">
+      
+        <option value="">Month</option>
+        <option value="jan">Jan</option>
+        <option value="feb">Feb</option>
+        <option value="mar">Mar</option>
+        <option value="apr">Apr</option>
+        <option value="may">May</option>
+        <option value="jun">Jun</option>
+        <option value="jul">Jul</option>
+        <option value="aug">Aug</option>
+        <option value="sep">Sep</option>
+        <option value="oct">Oct</option>
+        <option value="nov">Nov</option>
+        <option value="dec">Dec</option>
+      
+      </select>
+      
+      </div>
+      
+      <div id="field">
+      
+      <p>Enter birth year</p>
+      <input id="year" type="number"/>
+      
+      </div>
+      
+      <button id="submit">submit</button>
+      
+    </div>
+      
+    <div id="output" style="display: none;">
+      
+      <h3>Details Of Your Age</h3>
+      
+      <p id="nameOut">Name:  Invisible Ahmed</p>
+      <p id="dobOut">Date Of Birth: 00 MM 0000</p>
+      <p id="ageOut">Current Age: 00 Years 0 Months</p>
+      
+      <table >
+      
+       <caption>More Info</caption>
+      
+      <tr>
+      
+      <th>Years</th>
+      <td id="yOut">00</td>
+      
+      </tr>
+      
+      <tr>
+      
+      <th>Months</th>
+      <td id="mOut">00</td>
+      
+      </tr>
+      
+      <tr>
+      
+      <th>Days</th>
+      <td id="dOut">00</td>
+      
+      </tr>
+      
+      <tr>
+      
+      <th>Hours</th>
+      <td id="hOut">15</td>
+      
+      </tr>
+      
+      <tr>
+      
+      <th>Minutes</th>
+      <td id="minOut">10</td>
+      
+      </tr>
+      
+      <tr>
+      
+      <th>Seconds</th>
+      <td id="sOut">05</td>
+      
+      </tr>
+      
+      </table>
+      
+      <button id="cross">×</button>
+      
+    </div>
+    
+    <div id="Alert" style="display: none;">
+  
+    <p>Fill The  Form Properly</p>
+    <button id="alertClose">close</button>
+  
+    </div>
+        
+  </div>
+    
+  <script>
+  
+  submit.onclick = function(){
+   var name =  document.querySelector("#name").value;
+  
+  var inMonths = document.querySelector("#month").value;
+  
+  var inDate = document.querySelector("#day").value;
+  
+  var inYear = document.querySelector("#year").value;
+    
+  var dob = new Date(inMonths+" "+inDate+","+inYear+" 00:00:00").getTime();
+  
+  var time = new Date();
+  
+  var currentTime = time.getTime();
+  
+  var dif = currentTime-dob;
+  
+  var sec = Math.floor(dif/1000);
+  
+  var min = Math.floor(sec/60);
+  
+  var hours = Math.floor(min/60);
+  
+  var days = Math.floor(hours/24);
+  
+  var months = Math.floor(days/30.44);
+  
+  var years = Math.floor(months/12);
+  
+  var restSec = Math.floor(sec%60);
+  var restMin = Math.floor(min%60);
+  var reatHours = Math.floor(hours%24);
+  var restDays = Math.floor(days%30.44);
+  var restMonths = Math.floor(months%12);
+  
+  if(name == "" || 
+     inMonths== "" || 
+     inDate == "" || 
+     inYear == "" || 
+     inYear < 1800 || 
+     inYear > time.getFullYear()
+     ){
+  
+  input.style.display = "none";
+  Alert.style.display = "block";
+  
+  Alert.onclick = function(){
+  
+  input.style.display = "block";
+  Alert.style.display = "none";
+  
+  }
+  
+  }
+  
+  else{
+  
+  nameOut.innerHTML = "Name: "+name;
+  
+  dobOut.innerHTML = "Date Of Birth: " + inDate + " " +  inMonths + " " + inYear;
+  
+  ageOut.innerHTML = "Current Age: " +  years + " Years " + restMonths  + " Months";
+  
+  yOut.innerHTML = years;
+  
+  mOut.innerHTML = restMonths;
+  
+  dOut.innerHTML = restDays;
+  
+  hOut.innerHTML = reatHours;
+  
+  minOut.innerHTML = restMin;
+  
+  sOut.innerHTML = restSec;
+  
+  input.style.display = "none";
+  output.style.display = "block";
+  
+  cross.onclick = function(){
+  
+  location.reload();
+  
+  }
+  
+  }
+  
+  }
+     
+  </script>
+    
+</body>
+</html>
